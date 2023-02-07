@@ -7,7 +7,7 @@ host = 'localhost' #ip
 port = 50000 #porta 
 
 def main():
-    server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)  # socket do servidor
+    server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)  # socket do servidor ipv4 tcp
     try:
         server.bind((host,port)) #abre conexao utilizando o ip e a porta informada
         server.listen() # modo de escuta #metodo blocnante
@@ -19,13 +19,8 @@ def main():
         cliente, endereco = server.accept() #aceitar conexao 
         clientes.append(cliente) #adiciona o nome do cliente no array
         print('conectado em',endereco)#imprime endereço do cliente
-        
         Thread(target=recv_msg, args=[cliente]).start()# inicia a thread pra RECEBER as mesagens vinda do cliente
 
-def env_dados(conexao): 
-    while True:
-        conexao.sendall(str.encode(input("mensagem:")))#enviar mensagem do servidor pro cliente
-        print("")
 
 def recv_msg(cliente):
     while True:

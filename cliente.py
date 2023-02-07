@@ -5,7 +5,7 @@ host = 'localhost'
 port = 50000
 
 def main():
-    cliente = socket.socket(socket.AF_INET,socket.SOCK_STREAM)# socket cliente
+    cliente = socket.socket(socket.AF_INET,socket.SOCK_STREAM)# socket cliente ipv4 tcp
     try:
         cliente.connect((host,port))#conecta no socket do servidor      
     except:
